@@ -6,9 +6,9 @@ class Base:
         self.r = redis.StrictRedis(host='127.0.0.1', port=6379, db=0)
 
 
-class TestString(object):
+class TestString(Base):
     def __init__(self):
-        self.r = redis.StrictRedis(host='127.0.0.1', port=6379, db=0)
+        Base.__init__(self)
 
     def test_set(self):
         """ set -- 设置值 """
@@ -46,9 +46,9 @@ class TestString(object):
         return rest
 
 
-class TestList:
+class TestList(Base):
     def __init__(self):
-        self.r = redis.StrictRedis(host='127.0.0.1', port=6379, db=0)
+        Base.__init__(self)
 
     def test_push(self):
         """ lpush/rpush -- 从左/右插入数据 """
@@ -69,7 +69,8 @@ class TestList:
 
 class TestSet(Base):
     def __init__(self):
-        super().__init__()
+        # super().__init__()
+        Base.__init__(self)
 
     def test_sadd(self):
         """ sadd -- 添加/元素 """
